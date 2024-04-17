@@ -16,11 +16,11 @@ document.getElementById('form-login').addEventListener('submit',async event=>{
         
         labelStatus.innerText='Login Successfull!'
         alert("Login Successfull !")
-        
+        const token=result.data.token;
         localStorage.setItem('token',token)
         localStorage.setItem('userId',result.data.userId)
         
-            
+        window.location.href='../chat/chat.html'
         
     }
     catch(err){

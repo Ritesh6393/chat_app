@@ -1,0 +1,235 @@
+/* Add this CSS to display the list horizontally */
+.join-button {
+    background-color: #0b9c24; /* Specify the background color you want */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.join-button:hover {
+    background-color: #48b167; /* Button background color on hover */
+}
+.edit-button {
+    background-color: #6a7720; /* Specify the background color you want */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #c9ccaf; /* Button background color on hover */
+}
+
+.custom-button {
+    background-color: #007bff; /* Specify the background color you want */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+.create-button {
+    background-color: #4b4b4b; /* Specify the background color you want */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+    background-color: #2f363d; /* Button background color on hover */
+}
+
+.global-button {
+    background-color: #853131; /* Specify the background color you want */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.global-button:hover {
+    background-color: #7c4d31; /* Button background color on hover */
+}
+
+.link-container{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px; /* Center the content horizontally */
+}
+
+.horizontal-list {
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    display: flex; /* Use flexbox to arrange items horizontally */
+}
+
+.horizontal-list li {
+    margin-right: 10px; /* Add spacing between items */
+}
+
+/* Optional: Remove margin from the last item */
+.horizontal-list li:last-child {
+    margin-right: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between; /* Space between title and logout button */
+}
+
+header h1 {
+    flex-grow: 1; /* Allow title to grow and occupy space */
+    font-size: 24px;
+    margin: 0;
+}
+
+.logout-button {
+    background-color: #ff0000; /* Red color for logout button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+main {
+    flex-grow: 1; /* Grow to fill available space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 80%;
+    max-width: 90%; /* 50% of the viewport width */
+    margin: 0 auto; /* Center horizontally */
+    overflow-y: auto; /* Enable scrolling for the chat messages */
+    background-color: aqua; /* Background color for the main content area */
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column; /* Reverse the order of messages */
+    align-items: flex-start; /* Align messages to the left */
+    width: 100%;
+}
+
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    max-width: 100%;
+}
+
+.odd {
+    background-color: #858484;
+    align-self: flex-start;
+}
+
+.even {
+    background-color: #ffffff;
+    align-self: flex-end;
+}
+
+footer {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Distribute space between elements */
+    align-items: center; /* Vertically center elements */
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+/*----*/
+
+/* Style the custom file input container */
+.custom-file-input {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+/* Style the actual file input */
+.input-file {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+/* Style the custom button or label */
+.custom-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Optional: Add hover and active styles */
+.custom-button:hover {
+    background-color: #2980b9;
+}
+
+.custom-button:active {
+    background-color: #1c6ca2;
+}

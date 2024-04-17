@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="./chat.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Chat App</h1>
+        <button class="logout-button" id="button-logout">Logout</button>
+    </header>
+    <div class="list-container">
+        <ul id="list-group" class="horizontal-list">
+            <li><button class="global-button" id="button-global-chat">Global Chat</button></li>
+            <li><button class="create-button" id="button-create-group">Create Group</button></li>
+            <li><button class="join-button" id="button-join-group">Join Group</button></li>
+            <li><button class="edit-button" id="button-edit-group" style="display: none;">Edit Group Members</button></li>
+            <!--
+            <li><button class="custom-button">Item 1</button></li>
+             Add more items as needed -->
+        </ul>
+        
+        
+    </div>
+    <div class="link-container">
+        <input type="text" value="" id="inputLink" readonly>
+        <button class="custom-button" id="button-copy-link">Copy Group Joining UID</button>
+    </div>
+    <div class="link-container">
+        <label id="label-status" style="color: red;"></label>
+   
+        
+    </div>
+    <div class="link-container">
+        <label id="label-group-name" style="background-color: rgb(185, 183, 183);"><b>Group Name</b></label>
+   
+        
+    </div>
+    <main>
+        <div class="message-container" id="chat-container">
+             <!--
+            <div class="message odd">Hello! This is an example message. It should wrap if it's too long.</div>
+            <div class="message even">Hi there!</div>
+            <div class="message odd">How are you?</div>
+            <div class="message even">I'm good, thanks!</div>
+            Add more chat messages here -->
+        </div>
+    </main>
+    <div class="link-container">
+        <label id="file-label-status" style="background-color: rgb(206, 206, 206); display: none;"><b>File Selected</b></label>
+   
+        
+    </div>
+    <footer>
+        <input type="text" id="input-message" placeholder="Type your message" required>
+        <button id="button-send">Send</button>
+        
+        <input type="file" id="fileInput" class="input-file">
+        <label for="fileInput" class="custom-button">Choose File</label>
+        <button id="button-send-file">Send File</button>
+    </footer>
+    
+</body>
+</html>

@@ -14,3 +14,4 @@ const chatData=db.define('chat',{
         defaultValue:0
     }
 })
+module.exports=chatData;

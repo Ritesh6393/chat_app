@@ -50,37 +50,45 @@ buttonSend.onclick=async event=>{
     inputMessage.value=''
 }
 
-window.addEventListener("DOMContentLoaded", async () => {
+// Function to fetch chat messages
+async function fetchChatMessages() {
     try {
-        // Make a GET request to fetch chat data
         const response = await axios.get('http://localhost:3100/chat/getChat');
-        // Access the data from the response
         const chatData = response.data.data;
-        chatData.forEach(element=>{
+        
+        // Clear existing messages from the chat container
+        const messageContainer = document.getElementById('chat-container');
+        messageContainer.innerHTML = ''; // Remove all child elements
+        
+        // Append new messages to the chat container
+        chatData.forEach(element => {
             showChat(element);
-        })
-        console.log(chatData); // Do something with the chat data
+        });
     } catch (err) {
         console.error('Error fetching chat data:', err);
     }
-});
+};
 
+// Function to display a single chat message
 function showChat(messageObj) {
-    // Get the message container
     const messageContainer = document.getElementById('chat-container');
-
-    // Create a new message element
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
-    messageElement.classList.add(messageContainer.children.length % 2 === 0 ? 'odd' : 'even'); // Alternate odd and even messages for styling
-    
-    // Format the message: name: message
-    const formattedMessage = `${messageObj.name}: ${messageObj.chat}`;
-    
-    // Set the text content of the message element
-    messageElement.textContent = formattedMessage;
-    
-    // Append the message element to the message container
+    messageElement.classList.add(messageContainer.children.length % 2 === 0 ? 'odd' : 'even');
+
+    // Check if messageObj has the 'name' property
+    if (messageObj.name) {
+        messageElement.textContent = `${messageObj.name}: ${messageObj.chat}`;
+    } else {
+        // If 'name' property is missing, just display the chat message
+        messageElement.textContent = messageObj.chat;
+    }
+
     messageContainer.appendChild(messageElement);
 }
 
+// Fetch chat messages initially
+fetchChatMessages();
+
+// Poll for new messages every 2 seconds
+setInterval(fetchChatMessages, 2000);

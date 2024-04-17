@@ -22,3 +22,13 @@ exports.postChat = async (req, res, next) => {
     }
 };
 
+exports.getChat=async(req,res,next)=>{
+    try{
+       const data=await Chat.findAll();
+       res.status(200).json({ success: true, data });
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+}

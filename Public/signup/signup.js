@@ -30,7 +30,7 @@ formSignUp.onsubmit=async event=>{
         if (status ==200){
             labelStatus.textContent="Signup Successfull !"
             alert("Successfully Signed Up")
-            //window.location='../Login/index.html'
+            window.location='../login/login.html'
         }
         else{
             //Not Required

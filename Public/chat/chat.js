@@ -56,39 +56,53 @@ async function fetchChatMessages() {
         const response = await axios.get('http://localhost:3100/chat/getChat');
         const chatData = response.data.data;
         
-        // Clear existing messages from the chat container
-        const messageContainer = document.getElementById('chat-container');
-        messageContainer.innerHTML = ''; // Remove all child elements
-        
-        // Append new messages to the chat container
-        chatData.forEach(element => {
-            showChat(element);
-        });
+        // Save the latest messages to localStorage
+        saveChat2Local(chatData);
+
+        // Clear existing messages from the chat container and load from local storage
+        loadAndDisplayChats();
     } catch (err) {
         console.error('Error fetching chat data:', err);
     }
 };
 
-// Function to display a single chat message
-function showChat(messageObj) {
+// Load and display chats from local storage
+function loadAndDisplayChats() {
+    const chats = fetchLocalChats();
     const messageContainer = document.getElementById('chat-container');
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    messageElement.classList.add(messageContainer.children.length % 2 === 0 ? 'odd' : 'even');
+    messageContainer.innerHTML = ''; // Clear existing messages
 
-    // Check if messageObj has the 'name' property
-    if (messageObj.name) {
-        messageElement.textContent = `${messageObj.name}: ${messageObj.chat}`;
-    } else {
-        // If 'name' property is missing, just display the chat message
-        messageElement.textContent = messageObj.chat;
-    }
+    chats.forEach(messageObj => {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.classList.add(messageContainer.children.length % 2 === 0 ? 'odd' : 'even');
 
-    messageContainer.appendChild(messageElement);
+        if (messageObj.name) {
+            messageElement.textContent = `${messageObj.name}: ${messageObj.chat}`;
+        } else {
+            messageElement.textContent = messageObj.chat;
+        }
+
+        messageContainer.appendChild(messageElement);
+    });
 }
 
-// Fetch chat messages initially
+// Fetch chat messages initially and setup interval to refresh messages
 fetchChatMessages();
-
-// Poll for new messages every 2 seconds
 setInterval(fetchChatMessages, 2000);
+
+function fetchLocalChats() {
+    let data = localStorage.getItem('localChats');
+    return data ? JSON.parse(data) : [];
+}
+
+function saveChat2Local(chats) {
+    // Fetch existing chats from local storage
+    let localChats = fetchLocalChats();
+    
+    // Combine new and old chats, and keep only the latest 10 entries
+    localChats = [...chats, ...localChats].slice(0, 10);
+
+    // Save updated chat list to local storage
+    localStorage.setItem('localChats', JSON.stringify(localChats));
+}

@@ -1,22 +1,16 @@
-const Sequelize=require('sequelize');
+const Sequelize=require('sequelize')
+const sequelize=require('../database')
 
-const db=require('../util/database')
-
-module.exports=db.define('group',
-{
+module.exports=sequelize.define('Group',{
     id:{
         type:Sequelize.INTEGER,
         primaryKey:true,
-        autoIncrement:true
+        autoIncrement:true,
     },
-    groupName:{
-        type:Sequelize.STRING
-    },
-    groupUID:{
-        type:Sequelize.STRING
-    },
-    createdBy:{
-        type:Sequelize.INTEGER
-    }
-}
-)
+    
+    groupName:Sequelize.STRING,
+    groupUID:Sequelize.STRING,
+    createdBy:Sequelize.INTEGER,  //User Id of the person
+    
+
+})

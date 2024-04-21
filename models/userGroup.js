@@ -1,12 +1,13 @@
-const Sequelize=require('sequelize');
-const db=require('../util/database');
+const Sequelize=require('sequelize')
+const sequelize=require('../database')
 
-module.exports=db.define('userGroup',
-{
+module.exports=sequelize.define('Usergroup',{
     id:{
         type:Sequelize.INTEGER,
         primaryKey:true,
-        autoIncrement:true
+        autoIncrement:true,
     },
+    
     memberType:Sequelize.STRING
+    
 })

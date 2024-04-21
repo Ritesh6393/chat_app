@@ -1,21 +1,16 @@
 
-const User=require('../models/user')
+const User=require('../Models/User')
 const bcrypt=require('bcrypt')
-const jwt=require('jsonwebtoken');
+const jwt=require('jsonwebtoken')
 
 
 
-
-
-
-exports.signup=async (req,res,next)=>{
+exports.postSignUp=async (req,res,next)=>{
     const body=req.body;
-    
     const email=body.email;
     const password=body.password;
     const name=body.name;
     const phone=body.phone;
-    
     obj={name:name,email:email,password:password,phone:phone}
 
     try{
@@ -46,31 +41,40 @@ exports.signup=async (req,res,next)=>{
    
 }
 
-exports.login=async(req,res,next)=>{
-    obj={email:req.body.email,password:req.body.password};
-    try{
-        const user =await User.findOne({where:{email:obj.email}});
+exports.postLogin=async(req,res,next)=>{
+    obj={email:req.body.email,password:req.body.password}
+    try
+    {
+
+        const user=await User.findOne({where:{email:obj.email}})
+
         if(!user){
-            res.status(404).json({error:"User dont exist"});
+            //console.log("USER NOT FOUND")
+            res.status(404).json({error:"User don't Exists"})
         }
-        else{
+        else
+        {
             bcrypt.compare(obj.password,user.password,async(err,response)=>{
-                if(err){
-                    throw new Error("Something Went Wrong");
+                if(err)
+                    throw new Error("Something went wrong")
+                
+                if(response)
+                {
+                    const token=jwt.sign({name:user.dataValues.name,id:user.dataValues.id},process.env.JWT_SECRET_KEY)
+                    
+                    res.json({status:"Login Successfull",token:token,userId:user.id})
                 }
-                if(response){
-                    const token=jwt.sign({name:user.dataValues.name,id:user.dataValues.id},'qwertyuiop123');
-                    res.json({status:"login successfull",token:token,userId:user.id});
-                }
-                else{
+                    
+                else
+                {
+                    //console.log("INVALID PASSWORD")
                     res.status(401).json({error:"Invalid Password"})
                 }
             })
+            
         }
-
     }
     catch(err){
         console.log(err)
     }
 }
-

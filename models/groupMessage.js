@@ -1,20 +1,18 @@
-const Sequelize=require('sequelize');
+const Sequelize=require('sequelize')
+const sequelize=require('../database')
 
-const db=require('../util/database');
-
-
-module.exports=db.define('groupMessage',
-{
+module.exports=sequelize.define('Groupchat',{
     id:{
         type:Sequelize.INTEGER,
         primaryKey:true,
-        autoIncrement:true
+        autoIncrement:true,
     },
     chat:Sequelize.STRING,
     userId:Sequelize.INTEGER,
     userName:Sequelize.STRING,
-    idFile:{
+    isFile:{
         type:Sequelize.BOOLEAN,
         defaultValue:0
     }
+    
 })

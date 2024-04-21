@@ -1,9 +1,24 @@
-const express=require('express');
-const chatController=require('../controllers/chat');
+const express=require('express')
+const chatCont=require('../Controller/chat')
+const userAuth=require('../Middleware/auth')
+const multer = require('multer');
 
-const router=express.Router();
+const storage=multer.memoryStorage();
+const uploads=multer({storage})
 
-router.post('/postChat',chatController.postChat);
-router.get('/getChat',chatController.getChat);
 
-module.exports=router;
+const router=express.Router()
+
+
+
+
+router.post("/postChat",userAuth.authenticate,chatCont.postAddChat)
+
+router.post('/postFile',userAuth.authenticate,uploads.array('file'),chatCont.postAddFile)
+router.get("/getChat",userAuth.authenticate,chatCont.getChats)
+
+
+
+
+
+module.exports=router

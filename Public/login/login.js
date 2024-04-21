@@ -2,7 +2,7 @@ const inputEmail=document.getElementById('input-email')
 const inputPassword=document.getElementById('input-password')
 const labelStatus=document.getElementById('status-label')
 
-
+const baseUrl='http://54.167.22.93:3100/'
 
 document.getElementById('form-login').addEventListener('submit',async event=>{
     labelStatus.textContent=''
@@ -12,15 +12,16 @@ document.getElementById('form-login').addEventListener('submit',async event=>{
         password:inputPassword.value
     }
     try{
-        const result= await axios.post('http://localhost:3100/user/login',obj)
+        const result= await axios.post(baseUrl+'User/login',obj)
         
         labelStatus.innerText='Login Successfull!'
         alert("Login Successfull !")
         const token=result.data.token;
         localStorage.setItem('token',token)
         localStorage.setItem('userId',result.data.userId)
-        
-        window.location.href='../chat/chat.html'
+
+        window.location='../Chat/index.html'
+            
         
     }
     catch(err){

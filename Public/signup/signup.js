@@ -7,7 +7,7 @@ const inputPassword=document.getElementById('input-password')
 const labelStatus=document.getElementById('label-status')
 
 
-// const baseUrl='http://54.167.22.93:3100/'
+const baseUrl='http://54.167.22.93:3100/'
 
 
 
@@ -23,14 +23,14 @@ formSignUp.onsubmit=async event=>{
             password:inputPassword.value,
         }
 
-        const result=await axios.post('http://localhost:3100/user/signup',obj)
+        const result=await axios.post(baseUrl+'User/signup',obj)
         
         const status=result.status;
 
         if (status ==200){
             labelStatus.textContent="Signup Successfull !"
             alert("Successfully Signed Up")
-            window.location='../login/login.html'
+            window.location='../Login/index.html'
         }
         else{
             //Not Required
